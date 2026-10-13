@@ -1,0 +1,434 @@
+/* ============================================================
+   PhotoCarousel.module.css — Warm desert terracotta slider
+   Showcases Salek driving school facilities, fleet, and lessons
+   ============================================================ */
+
+.carouselContainer {
+  margin-bottom: var(--space-12);
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-light);
+  border: 1px solid rgba(198, 125, 52, 0.3);
+  border-radius: 999px;
+  padding: 0.25rem 0.85rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Nav Buttons in Header / Controls */
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.navBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(100, 65, 30, 0.08);
+}
+
+.navBtn:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-ochre);
+}
+
+.navBtn:active {
+  transform: translateY(0);
+}
+
+/* ── Main Viewport ──────────────────────────────────────────── */
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background-color: var(--color-asphalt);
+  border: 2px solid rgba(198, 125, 52, 0.25);
+  box-shadow: var(--shadow-card-hover);
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .viewport {
+    height: 550px;
+  }
+}
+
+@media (max-width: 600px) {
+  .viewport {
+    height: 520px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 650ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 650ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 650ms;
+  transform: scale(1.04);
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* ── Blurred background fill for portrait/vertical images ── */
+.slideBlurBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  /* Heavy blur to create soft ambient fill */
+  filter: blur(28px) saturate(1.2) brightness(0.55);
+  transform: scale(1.12); /* prevents blur edges from showing */
+  /* Warm sand tint on top via mix-blend-mode isn't widely supported,
+     so we rely on the ::after pseudo + the .scrim overlay instead */
+  z-index: 0;
+}
+
+/* Warm gradient tint layer over the blur — matches desert theme */
+.slideBlurBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 18, 8, 0.45) 0%,
+    rgba(100, 58, 20, 0.25) 50%,
+    rgba(30, 18, 8, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+.slideImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  z-index: 1;
+}
+
+/* Subtle dark terracotta gradient scrim */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(15, 12, 9, 0.95) 0%,
+    rgba(15, 12, 9, 0.72) 22%,
+    rgba(15, 12, 9, 0.25) 45%,
+    rgba(15, 12, 9, 0.05) 65%,
+    rgba(15, 12, 9, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+/* Top metadata row inside slide */
+.slideTopBar {
+  position: absolute;
+  top: var(--space-4);
+  inset-inline: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.slideBadge {
+  background: rgba(198, 125, 52, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.counterBadge {
+  background: rgba(20, 16, 12, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #F8D5AB;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 213, 171, 0.25);
+  direction: ltr;
+}
+
+/* Floating overlay arrows on viewport sides */
+.floatingArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(198, 125, 52, 0.3);
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.floatingArrow:hover {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: var(--shadow-glow-ochre);
+}
+
+.arrowPrev {
+  inset-inline-start: var(--space-4);
+}
+
+.arrowNext {
+  inset-inline-end: var(--space-4);
+}
+
+@media (max-width: 600px) {
+  .floatingArrow {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Bottom Text Caption */
+.caption {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  padding: var(--space-6) var(--space-8);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: right;
+  direction: rtl;
+}
+
+@media (max-width: 600px) {
+  .caption {
+    padding: var(--space-4) var(--space-4);
+  }
+}
+
+.captionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.3;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 600px) {
+  .captionTitle {
+    font-size: 1.15rem;
+  }
+}
+
+.captionDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 243, 225, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 780px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+  .captionDesc {
+    font-size: 0.84rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ── Bottom Controls: Dots & Thumbnails ─────────────────────── */
+.bottomControls {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Dots */
+.dotsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dotBtn {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.dotBtn:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+.dotActive {
+  width: 32px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  box-shadow: 0 2px 8px rgba(198, 125, 52, 0.4);
+}
+
+/* Thumbnail Strip (Desktop & Tablet) */
+.thumbnailsTrack {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  overflow-x: auto;
+  padding-block: var(--space-1);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  justify-content: center;
+}
+
+.thumbnailsTrack::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .thumbnailsTrack {
+    display: none;
+  }
+}
+
+.thumbnailCard {
+  flex: 1;
+  max-width: 220px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  background-color: var(--color-surface-dark);
+  padding: 0;
+  text-align: right;
+}
+
+.thumbnailCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(198, 125, 52, 0.5);
+}
+
+.thumbnailActive {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-ochre);
+}
+
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  transition: opacity var(--transition-base);
+}
+
+.thumbnailActive .thumbnailImg,
+.thumbnailCard:hover .thumbnailImg {
+  opacity: 0.95;
+}
+
+.thumbnailLabel {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

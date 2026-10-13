@@ -1,0 +1,24 @@
+.section {
+  padding-block: var(--space-16);
+  background-color: var(--color-surface);
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 480px);
+  justify-content: center;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+}
+
+@media (max-width: 580px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

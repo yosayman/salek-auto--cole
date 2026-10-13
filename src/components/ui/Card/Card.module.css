@@ -1,0 +1,26 @@
+.card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.flat {
+  box-shadow: none;
+}
+
+.base {
+  box-shadow: var(--shadow-card);
+}
+
+.raised {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.interactive:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}

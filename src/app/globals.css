@@ -1,0 +1,207 @@
+/* ============================================================
+   globals.css — Salek Driving School Design System
+   Theme: Sahara Meets Road Safety (Laâyoune Identity)
+   ============================================================ */
+
+/* Google Fonts: Cairo (Primary Display & Body) + Readex Pro */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Readex+Pro:wght@400;500;600;700&display=swap');
+
+/* ── Design Tokens ───────────────────────────────────────── */
+:root {
+  /* Sahara Meets Road Safety Palette */
+  --color-primary:        #C67D34; /* Warm Desert Dune Ochre */
+  --color-primary-dark:   #A75F1C; /* Deep Terracotta / Burnished Dune */
+  --color-primary-light:  #F7EAD9; /* Warm Morning Sand Tint */
+  --color-primary-subtle: #FDF9F3; /* Soft Sahara Glow */
+
+  /* Road & Infrastructure Elements */
+  --color-asphalt:        #181D24; /* Deep Asphalt Slate */
+  --color-asphalt-light:  #262D37; /* Medium Road Slate */
+  
+  /* Sahara Sun & Safety Accents */
+  --color-amber:          #D97706; /* Radiant Sahara Sun / Warning Amber */
+  --color-amber-glow:     #F59E0B; /* Bright Signal Amber */
+  --color-sky:            #0284C7; /* Atlantic-Sahara Clear Sky Azure */
+  --color-accent:         #25D366; /* WhatsApp Green */
+  
+  /* Surfaces & Backgrounds (Warm Desert Undertones, No Cold Gray) */
+  --color-surface:        #FAF6F0; /* Warm Sand Off-White */
+  --color-surface-card:   #FFFFFF; /* Pure White with Warm Border */
+  --color-surface-dark:   #14181F; /* Sahara Night Asphalt */
+  --color-surface-accent: #F4EBE0; /* Dune Sand Card Background */
+  
+  /* Text Colors */
+  --color-text-primary:   #181D24; /* Deep Slate Charcoal */
+  --color-text-secondary: #4B453E; /* Warm Espresso Slate */
+  --color-text-muted:     #786F66; /* Warm Sandstone Muted */
+  
+  /* Feedback & Road Signals */
+  --color-error:          #DC2626; /* Stop Sign Red */
+  --color-success:        #15803D; /* Safe Pass Green */
+  --color-border:         #E8DCCF; /* Warm Dune Contour */
+  --color-border-subtle:  #F0E5D8; /* Soft Sand Border */
+
+  /* Typography */
+  --font-arabic:          'Cairo', 'Readex Pro', 'Segoe UI', system-ui, sans-serif;
+  --line-height-arabic:   1.85;
+
+  /* Spacing Scale */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4.5rem;
+  --space-20: 6rem;
+
+  /* Border Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  /* Sahara Shadows (Warm Sun Ambient) */
+  --shadow-card:       0 6px 24px -2px rgba(100, 65, 30, 0.08), 0 2px 6px -1px rgba(100, 65, 30, 0.04);
+  --shadow-card-hover: 0 16px 36px -4px rgba(100, 65, 30, 0.15), 0 4px 12px -2px rgba(100, 65, 30, 0.08);
+  --shadow-glow-ochre: 0 8px 30px rgba(198, 125, 52, 0.28);
+  --shadow-glow-amber: 0 8px 30px rgba(217, 119, 6, 0.25);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-arabic);
+  font-size: 1rem;
+  line-height: var(--line-height-arabic);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Focus visible ring — accessibility */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Sahara Dunes Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #D4C3AF;
+  border-radius: 999px;
+  border: 2px solid var(--color-surface);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* ── Typography Helpers ──────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-arabic);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+/* ── Selection Color ─────────────────────────────────────── */
+::selection {
+  background-color: rgba(198, 125, 52, 0.22);
+  color: var(--color-asphalt);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.siteFooter {
+  background: linear-gradient(180deg, var(--color-surface-dark) 0%, #0E1217 100%);
+  color: rgba(245, 237, 227, 0.7);
+  text-align: center;
+  padding-block: var(--space-12) var(--space-8);
+  font-size: 0.9rem;
+  border-top: 3px solid var(--color-primary);
+}
+
+.siteFooterContainer {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.siteFooterBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 1rem;
+  background: rgba(198, 125, 52, 0.15);
+  border: 1px solid rgba(198, 125, 52, 0.35);
+  border-radius: 999px;
+  color: #F8D5AB;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.siteFooter a {
+  color: #F8D5AB;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.siteFooter a:hover {
+  color: var(--color-amber-glow);
+  text-decoration: underline;
+}
+
+.siteFooterCopy {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+}
