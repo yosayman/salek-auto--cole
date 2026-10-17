@@ -108,8 +108,17 @@ export function useContactForm(): UseContactFormReturn {
       }
 
       try {
-        // Stub: replace with real API call or mailto fallback
-        await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+        const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+        if (!endpoint) throw new Error('Formspree endpoint is not configured.');
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(result.data),
+        });
+
+        if (!response.ok) throw new Error(`Formspree error: ${response.status}`);
+
         dispatch({ type: 'SET_STATUS', status: 'success' });
       } catch {
         dispatch({ type: 'SET_STATUS', status: 'error' });

@@ -21,6 +21,7 @@ interface ContactProps {
  */
 export function Contact({ schoolInfo }: ContactProps): React.ReactElement {
   const { contact, workingHours } = schoolInfo;
+  const cleanWaNumber = contact.whatsapp.replace(/\D/g, '');
 
   return (
     <section
@@ -88,7 +89,7 @@ export function Contact({ schoolInfo }: ContactProps): React.ReactElement {
                     <strong className={styles.itemLabel}>واتساب المباشر:</strong>
                     <p>
                       <a
-                        href={`https://wa.me/${contact.whatsapp}`}
+                        href={`https://wa.me/${cleanWaNumber}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.infoLink}
@@ -129,7 +130,7 @@ export function Contact({ schoolInfo }: ContactProps): React.ReactElement {
                 </Button>
                 <Button
                   variant="whatsapp"
-                  href={`https://wa.me/${contact.whatsapp}`}
+                  href={`https://wa.me/${cleanWaNumber}`}
                   target="_blank"
                   aria-label="تواصل عبر واتساب"
                 >

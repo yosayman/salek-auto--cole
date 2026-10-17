@@ -9,8 +9,8 @@ export const SCHOOL_DATA: SchoolInfo = {
   name: 'سيارات تعليم سالك',
   tagline: 'رواد تعليم السياقة بالعيون — من رمال الصحراء إلى كل طرقات المملكة بثقة وأمان',
   contact: {
-    phone: '212 627-249159',
-    whatsapp: '212 627-249159',
+    phone: '+212 627-249159',
+    whatsapp: '212627249159',
     email: 'contact@salek-layoune.ma',
     address: 'شارع حبوها، عمارة 42 (قرب بيم)، العيون',
     googleMapsUrl: 'https://maps.google.com/?q=27.1536,-13.2033',

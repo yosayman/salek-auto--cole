@@ -7,19 +7,32 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://votredomaine.ma'),
-  title: 'سيارات تعليم سالك بالعيون — مدرسة تعليم السياقة المعتمدة بالصحراء المغربية',
+  metadataBase: new URL('https://autoecole-salek.ma'),
+  title: 'Auto École Salek Laâyoune | سيارات تعليم سالك بالعيون — مدرسة السياقة المعتمدة',
   description:
-    'مدرسة سالك لتعليم السياقة بشارع مكة بمدينة العيون — رخص B، A، C/D بأحدث أسطول مكيف وتدريب متخصص على امتحانات نارسا (NARSA) وطرقات الصحراء.',
+    'Auto école Salek à Laâyoune — Permis B, A, C/D avec des moniteurs agréés. مدرسة سالك لتعليم السياقة بالعيون — رخص B، A، C/D بأحدث أسطول مكيف وتدريب متخصص على امتحانات نارسا (NARSA).',
   keywords: [
+    // French keywords
+    'auto ecole salek',
+    'auto école salek',
+    'auto école laayoune',
+    'auto école laâyoune',
+    'permis de conduire laayoune',
+    'permis B laayoune',
+    'permis moto laayoune',
+    'école de conduite laayoune',
+    'moniteur auto école laayoune',
+    'salek laayoune',
+    // Arabic keywords
     'مدرسة تعليم السياقة العيون',
     'سيارات تعليم سالك',
     'رخصة السياقة العيون',
     'جهة العيون الساقية الحمراء',
     'تعليم السياقة الصحراء المغربية',
     'رخصة B العيون',
-    'شارع حبوها العيون',
     'امتحانات نارسا NARSA',
+    'مدرسة سالك العيون',
+    'تعليم قيادة السيارات العيون',
   ],
   robots: { index: true, follow: true },
   openGraph: {

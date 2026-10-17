@@ -23,7 +23,8 @@ export function LicenseCard({
   category,
   whatsapp,
 }: LicenseCardProps): React.ReactElement {
-  const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(
+  const cleanWaNumber = whatsapp.replace(/\D/g, '');
+  const waUrl = `https://wa.me/${cleanWaNumber}?text=${encodeURIComponent(
     `مرحباً، أريد التسجيل في رخصة ${category.label} - ${category.title}`
   )}`;
 
